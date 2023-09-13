@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  ddns:
+    container_name: ddns-route53
+    image: crazymax/ddns-route53:latest
+    environment:
+      - "TZ=Asia/Kuching"
+      - "SCHEDULE=*/30 * * * *"
+      - LOG_LEVEL=info
+      - LOG_JSON=false
+    volumes:
+      - ./ddns-route53.yml:/ddns-route53.yml:ro
+    restart: always
